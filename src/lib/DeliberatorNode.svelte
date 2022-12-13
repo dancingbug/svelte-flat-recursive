@@ -1,16 +1,15 @@
 <script>
-  import { onMount } from 'svelte';
-  export let tree_node;
-  export let get_this;
-  export let reply;
+  import { getContext,onMount } from 'svelte';
+  export let data
+  export let child_container
+  const map = getContext('argument_points')
 
-  function add_subnode() {
-    tree_node.subnodes.unshift( {id: 100, content: "foo", subnodes: []});
-    tree_node.subnodes = tree_node.subnodes;
-    console.log(JSON.stringify(tree_node));
-  };
+  const callbacks = getContext('node_callbacks')  
 
-  let content;
+
+   
+
+
 </script>
 
 
@@ -18,20 +17,20 @@
 
   <div class="content">
 
+    id: {data.id}
+    content: {data.content}
 
-    {tree_node.content}, id: {tree_node.id}
     <div class="actions">
-      <div bind:this={reply} on:click={add_subnode}>new reply</div>
-      <div class="merge">propose merge...</div>
+      <div on:click={callbacks.append(data.id)}>new reply</div>
+      <div on:click={callbacks.merge(data.id)}>propose merge...</div>
     </div>
 
   </div>
 
-  <div class="sub">
-    {#each tree_node.subnodes as subnode}
-      <svelte:self tree_node={subnode} />
-    {/each}
+  <div bind:this={child_container} class="sub">
+    
   </div>
+
 </div>
 
 <style>
