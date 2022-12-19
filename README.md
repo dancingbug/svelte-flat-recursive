@@ -1,7 +1,7 @@
 # svelte-flat-recursive
 
 ## what
-A small svelte (higher-order) component for using a ES2015 `Map`s with elements linked by `parent-id` fields to easily create recursively-nested components
+A small svelte (higher-order) component for using a ES2015 `Map` with elements linked by `parent-id` fields to easily create recursively-nested components
 
 ## why
 Normally in demos for Svelte component recursion, the structure of the data matches the structure of the rendered DOM.
